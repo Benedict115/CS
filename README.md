@@ -8,6 +8,6 @@ To run the JUnit test, simply launch the DrawMainTest testing program.
 
 Assumption:
 
-Expect user must create the Canvas before they can draw other things.
-Special character '%' is not supported for the colour of bucket fill.
-JUnit Test just cover the normal procedure.
+1. Expect user must create the Canvas before they can draw other things.
+2. Special character '%' is not supported for the colour of bucket fill.
+3. JUnit Test just cover the normal procedure.
