@@ -18,7 +18,7 @@ public class DrawMain {
 				//Error when creating console
 				return;
 			}
-			console.printf("Welcome to Paint Program! Please enter your command ('H' can show help function):");
+			console.printf("enter command: ");
 		
 			String input = "";
 			do
@@ -26,6 +26,7 @@ public class DrawMain {
 				input = console.readLine();
 				String[] inputArray = input.split(" ");
 				chooseAction(inputArray);
+				console.printf("enter command: ");
 			} while (true);
 		} catch (Exception e)
 		{
@@ -82,11 +83,6 @@ public class DrawMain {
 			}
 			drawing.setBucketFill(checkInteger(input[1]),checkInteger(input[2]),input[3]);
 		}
-		else if (Constant.HELP_ACTION.equals(action))
-		{
-			help();
-			return;
-		}
 		else
 		{
 			console.printf("Wrong action \"" + action + "\". Please re-enter:");
@@ -104,19 +100,6 @@ public class DrawMain {
 		if(checkNumber <= 0)
 			throw new Exception("Negative value is detected.");
 		return checkNumber;
-	}
-	
-	private static void help()
-	{
-		console.printf("----------------------------------------------------------------------\n"
-				+ "This is the help function. You can enter the following command:\n"
-				+ "1. \"Q\": Quit the program.\n"
-				+ "2. \"C w h\": Create a canvas of size width w and height h.\n"
-				+ "3. \"L x1 y1 x2 y2\": Draw a line from (x1,y1) to (x2,y2).\n"
-				+ "4. \"R x1 y1 x2 y2\": Draw a rectangle from (x1,y1) to (x2,y2).\n"
-				+ "5. \"B x y c\": Bucket fill the area from point (x,y) with colour c.\n"
-				+ "----------------------------------------------------------------------\n"
-				+ "Please enter your command: ");
 	}
 
 }

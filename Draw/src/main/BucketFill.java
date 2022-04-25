@@ -17,16 +17,16 @@ public class BucketFill {
 		}
 	}
 	
-	public static void bucketFill(int x, int y, String colour, String oldColour, String[][] drawingBoard)
+	public static void bucketFill(int x, int y, String colour, String oldColour, String[] drawingBoard, int canvasWidth, int canvasHeight)
 	{
-		if(oldColour.equals(drawingBoard[x][y]))
+		if(oldColour.equals(drawingBoard[(y * canvasWidth - 1) + (x + 1)]))
 		{
-			drawingBoard[x][y] = colour;
+			drawingBoard[(y * canvasWidth - 1) + (x + 1)] = colour;
 			//Think of the x,y is the center point, we need to test the next point of four direction recursively
-			bucketFill(x+1, y, colour, oldColour, drawingBoard);
-			bucketFill(x-1, y, colour, oldColour, drawingBoard);
-			bucketFill(x, y+1, colour, oldColour, drawingBoard);
-			bucketFill(x, y-1, colour, oldColour, drawingBoard);
+			bucketFill(x+1, y, colour, oldColour, drawingBoard, canvasWidth, canvasHeight);
+			bucketFill(x-1, y, colour, oldColour, drawingBoard, canvasWidth, canvasHeight);
+			bucketFill(x, y+1, colour, oldColour, drawingBoard, canvasWidth, canvasHeight);
+			bucketFill(x, y-1, colour, oldColour, drawingBoard, canvasWidth, canvasHeight);
 		}
 		else
 		{

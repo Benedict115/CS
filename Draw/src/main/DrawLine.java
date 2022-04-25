@@ -14,43 +14,43 @@ public class DrawLine {
 		}
 	}
 	
-	public static void drawVerticalLine(int x1, int y1, int x2, int y2, String[][] drawingBoard)
+	public static void drawVerticalLine(int x1, int y1, int x2, int y2, String[] drawingBoard, int canvasWidth, int canvasHeight)
 	{
 		if (y1 < y2)
 		{
 			for (int i=y1; i<=y2; i++)
 			{
-				drawingBoard[x1][i] = Constant.DRAW_POINT;
+				drawingBoard[(i * canvasWidth - 1) + (x1 + 1)] =  Constant.DRAW_POINT;
 			}
 		}
 		else
 		{
 			for (int i=y2; i<=y1; i++)
 			{
-				drawingBoard[x1][i] = Constant.DRAW_POINT;
+				drawingBoard[(i * canvasWidth - 1) + (x1 + 1)] =  Constant.DRAW_POINT;
 			}
 		}
 	}
 	
-	public static void drawHorizontalLine(int x1, int y1, int x2, int y2, String[][] drawingBoard)
+	public static void drawHorizontalLine(int x1, int y1, int x2, int y2, String[] drawingBoard, int canvasWidth, int canvasHeight)
 	{
 		if (x1 < x2)
 		{
 			for (int i=x1; i<=x2; i++)
 			{
-				drawingBoard[i][y1] = Constant.DRAW_POINT;
+				drawingBoard[(y1 * canvasWidth - 1) + (i + 1)] =  Constant.DRAW_POINT;
 			}
 		}
 		else
 		{
 			for (int i=x2; i<=x1; i++)
 			{
-				drawingBoard[i][y1] = Constant.DRAW_POINT;
+				drawingBoard[(y1 * canvasWidth - 1) + (i + 1)] =  Constant.DRAW_POINT;
 			}
 		}
 	}
 	
-	public static void drawSlope(int x1, int y1, int x2, int y2, int canvasHeight, String[][] drawingBoard)
+	public static void drawSlope(int x1, int y1, int x2, int y2, String[] drawingBoard, int canvasWidth, int canvasHeight)
 	{
 		//Swap the point input value is not x1 < x2 or y1 < y2
 		if(x1 > x2)
@@ -78,7 +78,7 @@ public class DrawLine {
 			//Avoid points draw on frame of canvas
 			if (yPos < canvasHeight)
 			{
-				drawingBoard [i][yPos] = Constant.DRAW_POINT;
+				drawingBoard[(yPos * canvasWidth - 1) + (i + 1)] =  Constant.DRAW_POINT;
 			}
 		}
 	}

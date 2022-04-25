@@ -22,7 +22,7 @@ public class DrawRectangle {
 		}
 	}
 	
-	public static void drawRectangle(int x1, int y1, int x2, int y2 ,String[][] drawingBoard)
+	public static void drawRectangle(int x1, int y1, int x2, int y2 , String[] drawingBoard, int canvasWidth, int canvasHeight)
 	{
 		//Swap the point input value is not x1 < x2 or y1 < y2
 		if(x1 > x2)
@@ -40,18 +40,18 @@ public class DrawRectangle {
 		
 		for (int i=x1; i<=x2; i++)
 		{
-			drawingBoard[i][y1] = Constant.DRAW_POINT;
+			drawingBoard[(y1 * canvasWidth - 1) + (i + 1)] =  Constant.DRAW_POINT;
 		}
 		
 		for (int j=y1; j<=y2-1; j++)
 		{
-			drawingBoard[x1][j] = Constant.DRAW_POINT;
-			drawingBoard[x2][j] = Constant.DRAW_POINT;
+			drawingBoard[(j * canvasWidth - 1) + (x1 + 1)] =  Constant.DRAW_POINT;
+			drawingBoard[(j * canvasWidth - 1) + (x2 + 1)] =  Constant.DRAW_POINT;
 		}
 		
 		for (int i=x1; i<=x2; i++)
 		{
-			drawingBoard[i][y2] = Constant.DRAW_POINT;
+			drawingBoard[(y2 * canvasWidth - 1) + (i + 1)] =  Constant.DRAW_POINT;
 		}
 	}
 

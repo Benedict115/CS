@@ -90,26 +90,19 @@ public class DrawMainTest {
 		assertTrue(testEqualArray(drawingTest.getDrawingBoard(), expectedResult, drawingTest.getCanvasWidth(), drawingTest.getCanvasHeight()));
 	}
 	
-	public boolean testEqualArray(String[][] a, String[][] b, int width, int height)
+	public boolean testEqualArray(String[] a, String[][] b, int width, int height)
 	{
-		if(a.length != b.length)
+		for(int j=0; j < height; j++)
 		{
-			return false;
-		}
-		else
-		{
-			for(int j=0; j < height; j++)
+			for (int i=0; i < width; i++)
 			{
-				for (int i=0; i < width; i++)
+				if(!a[j * width + i].equals(b[i][j]))
 				{
-					if(!a[i][j].equals(b[i][j]))
-					{
-						return false;
-					}					
-				}
+					return false;
+				}					
 			}
-			return true;
 		}
+		return true;		
 	}
 	
 

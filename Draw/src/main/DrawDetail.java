@@ -4,7 +4,9 @@ import java.io.Console;
 public class DrawDetail{
 	private int canvasWidth;
 	private int canvasHeight;
-	private String [][] drawingBoard;	
+	//private String [][] drawingBoard;
+	private String [] drawingBoard;
+
 	private Console console;
 
 	public DrawDetail(int w, int h, Console inConsole)
@@ -17,48 +19,45 @@ public class DrawDetail{
 	
 	public void printCanvas()
 	{
-		for(int j=0; j<getCanvasHeight(); j++)
+		for (int i=0; i<(getCanvasWidth() * getCanvasHeight()); i++)
 		{
-			for(int i=0; i<getCanvasWidth(); i++)
+			console.printf(drawingBoard[i]);
+			if((i + 1) % getCanvasWidth() == 0)
 			{
-				console.printf(drawingBoard[i][j]);
+				console.printf(Constant.LINE_SEPARATOR);
 			}
-			console.printf(Constant.LINE_SEPARATOR);
 		}
 		
 	}
 	
 	public void setCanvas()
 	{
-		drawingBoard = new String[getCanvasWidth()][getCanvasHeight()];
+		drawingBoard = null;
+		drawingBoard = new String [getCanvasWidth() * getCanvasHeight()];
 		setEmptySpace();
 		//Draw the top horizontal line
 		for (int i=0; i<getCanvasWidth(); i++)
 		{
-			drawingBoard[i][0] = Constant.CANVAS_OUTLINE_HORIZONTAL;
+			drawingBoard[i] = Constant.CANVAS_OUTLINE_HORIZONTAL;
 		}
 		//Draw the left and right vertical line
 		for (int j=1; j<getCanvasHeight() - 1; j++)
 		{
-			drawingBoard[0][j] = Constant.CANVAS_OUTLINE_VERTICAL;
-			drawingBoard[getCanvasWidth() - 1][j] = Constant.CANVAS_OUTLINE_VERTICAL;
+			drawingBoard[getCanvasWidth() * j] = Constant.CANVAS_OUTLINE_VERTICAL;
+			drawingBoard[getCanvasWidth() * (j + 1) - 1] = Constant.CANVAS_OUTLINE_VERTICAL;
 		}
 		//Draw the bottom horizontal line
 		for (int i=0; i<getCanvasWidth(); i++)
 		{
-			drawingBoard[i][getCanvasHeight() - 1] = Constant.CANVAS_OUTLINE_HORIZONTAL;
+			drawingBoard[(getCanvasWidth() * (getCanvasHeight() - 1)) + i] =  Constant.CANVAS_OUTLINE_HORIZONTAL;
 		}
 	}
 	
 	public void setEmptySpace()
 	{
-		for(int j=0; j<getCanvasHeight(); j++)
+		for (int i=0; i<(getCanvasWidth() * getCanvasHeight()); i++)
 		{
-			for(int i=0; i<getCanvasWidth(); i++)
-			{				
-				drawingBoard[i][j] = " ";
-			}
-			
+			drawingBoard[i] = " ";			
 		}
 	}
 	
@@ -71,7 +70,7 @@ public class DrawDetail{
 		}
 		else
 		{
-			DrawRectangle.drawRectangle(x1, y1, x2, y2, drawingBoard);
+			DrawRectangle.drawRectangle(x1, y1, x2, y2, drawingBoard, getCanvasWidth(), getCanvasHeight());
 		}
 	}
 	
@@ -85,17 +84,17 @@ public class DrawDetail{
 		//Vertical line
 		if (x1 == x2)
 		{
-			DrawLine.drawVerticalLine(x1, y1, x2, y2, drawingBoard);
+			DrawLine.drawVerticalLine(x1, y1, x2, y2, drawingBoard, getCanvasWidth(), getCanvasHeight());
 		}
 		//Horizontal line
 		else if (y1 == y2)
 		{
-			DrawLine.drawHorizontalLine(x1, y1, x2, y2, drawingBoard);
+			DrawLine.drawHorizontalLine(x1, y1, x2, y2, drawingBoard, getCanvasWidth(), getCanvasHeight());
 		}
 		//Drop into slope case
 		else
 		{
-			DrawLine.drawSlope(x1, y1, x2, y2, getCanvasHeight(), drawingBoard);
+			DrawLine.drawSlope(x1, y1, x2, y2, drawingBoard, getCanvasWidth(), getCanvasHeight());
 		}
 	}	
 	
@@ -107,7 +106,7 @@ public class DrawDetail{
 			return;
 		}
 		
-		String oldColour = drawingBoard[x][y];
+		String oldColour = drawingBoard[(y * canvasWidth - 1) + (x + 1)];
 		if(newColour.equals(oldColour))
 		{
 			//Same colour no need to fill
@@ -116,16 +115,15 @@ public class DrawDetail{
 		else
 		{
 			//We need to change the existing x,y colour to new colour, old colour need to be recognized first			
-			BucketFill.bucketFill(x, y, newColour, oldColour, drawingBoard);
+			BucketFill.bucketFill(x, y, newColour, oldColour, drawingBoard, getCanvasWidth(), getCanvasHeight());
 		}
 	}
 	
-	
-	public String[][] getDrawingBoard() {
+	public String[] getDrawingBoard() {
 		return drawingBoard;
 	}
 
-	public void setDrawingBoard(String[][] drawingBoard) {
+	public void setDrawingBoard(String[] drawingBoard) {
 		this.drawingBoard = drawingBoard;
 	}
 	
