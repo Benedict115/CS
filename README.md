@@ -4,7 +4,7 @@ To run the main program:
 
 1. Change to directory of ${YOUR_WORKSPACE}\Draw\bin\
 2. Type the command "java main.DrawMain"
-To run the JUnit test, simply launch the DrawMainTest testing program.
+3. To run the JUnit test, simply launch the DrawMainTest testing program.
 
 Assumption:
 
