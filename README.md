@@ -2,8 +2,8 @@ This is the Simple Paint Program created by Benedict Chan on 25/04/2022.
 
 To run the main program:
 
-Change to directory of ${YOUR_WORKSPACE}\Draw\bin\
-Type the command "java main.DrawMain"
+1. Change to directory of ${YOUR_WORKSPACE}\Draw\bin\
+2. Type the command "java main.DrawMain"
 To run the JUnit test, simply launch the DrawMainTest testing program.
 
 Assumption:
